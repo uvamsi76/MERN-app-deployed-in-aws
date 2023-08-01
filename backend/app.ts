@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import { Users } from "./db";
+import { Users,Goals } from "./db";
 const app=express();
 const PORT =3000;
 app.use(bodyParser.json())
@@ -68,6 +68,28 @@ app.post('/signup',async (req:Request,res:Response,next:NextFunction)=>{
         // Users.push(payload)
     }
 
+})
+
+app.get('/goals',async (req:Request,res:Response,next:NextFunction)=>{
+    const goals= await Goals.find({});
+    if(goals){
+        res.status(200).json({"goals":goals});
+    }
+})
+
+app.post('/setgoals',async (req:Request,res:Response,next:NextFunction) => {
+    const g=req.body;
+    if(g){
+        const newgoal =new Goals(g);
+        newgoal.save().then((savedgoal)=>{
+            res.status(200).json(savedgoal);
+        }).catch((err)=>{
+            res.status(400).json({"message":err})
+        })
+    }
+    else{
+        res.status(400).json({"message":"please provide valid goal"})
+    }
 })
 mongoose.connect('mongodb+srv://uvamsi76:ybjSWKpCunZoIvwY@cluster0.vtksuht.mongodb.net/track', { dbName: "track" });
     // jwt.sign(data,SECRET,{expiresIn:'1h'})
