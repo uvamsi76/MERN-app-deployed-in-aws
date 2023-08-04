@@ -1,0 +1,14 @@
+.default-style {
+  /* Default styles here */
+  background-color: whitesmoke;
+  margin: 0%;
+  padding:0%;
+  height:100%;
+  width: 100%;
+}
+
+.special-style {
+  /* Special styles here */
+  background-color: #1E2028;
+  height: 100%;
+}
