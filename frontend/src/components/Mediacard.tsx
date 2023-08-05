@@ -17,8 +17,7 @@ type MyComponentProps = {
 const Mediacard: React.FC<MyComponentProps> =({imglink,title})=>{
   const a=imglink
   const b=title
-  console.log(a,b)
-  const ilink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU="
+  const ilink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=";
   const tle="liz"
   // const desc="suii"
   return (

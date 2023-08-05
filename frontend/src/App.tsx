@@ -3,6 +3,7 @@ import {Home} from "./components/Home";
 import {Appbar} from "./components/Appbar"
 import {Signin} from "./components/Signin"
 import {Signup} from "./components/Signup"
+import {Logout} from "./components/Logout"
 import { isSpecialState } from './store/isSpecial';
 import {useRecoilState} from "recoil"
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -17,6 +18,7 @@ const [isSpecial]=useRecoilState(isSpecialState);
         <Route path="/" element={<Home/>}/>
         <Route path="/signin" element={<Signin/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/logout" element={<Logout/>}/>
       </Routes>
     </Router>
     
