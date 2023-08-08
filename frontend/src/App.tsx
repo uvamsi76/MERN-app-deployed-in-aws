@@ -7,6 +7,7 @@ import {Logout} from "./components/Logout"
 import { isSpecialState } from './store/isSpecial';
 import {useRecoilState} from "recoil"
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { Course } from './components/Course';
 function App() {
   // const [text, setText] = useRecoilState(textState);
 const [isSpecial]=useRecoilState(isSpecialState);
@@ -16,6 +17,7 @@ const [isSpecial]=useRecoilState(isSpecialState);
       <Appbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/course/:courseid" element={<Course/>}/>
         <Route path="/signin" element={<Signin/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/logout" element={<Logout/>}/>

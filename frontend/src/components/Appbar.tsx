@@ -54,14 +54,14 @@ export function Appbar(){
     if(username){
         return (
             <div style={{display:"flex",justifyContent:"space-between", backgroundColor:bcl,margin:0,padding:0}}>
-                <div>
-                    <img style={{ width: 60, height: 45 }} src="https://wallpapercave.com/wp/wp7771193.jpg"
+                <div style={{paddingLeft:10}}>
+                    <img style={{ width: 100, height: 70 }} src="https://1000logos.net/wp-content/uploads/2022/06/Coursera-Logo-2012-500x281.png"
                         alt="image here" />
                 </div>
-                <div>
-                    <Typography style={{color:tcl,fontSize:"200%"}}>{companyname}</Typography>
+                <div >
+                    <Typography style={{color:tcl,padding:10,fontSize:"200%"}}>{companyname}</Typography>
                 </div>
-                <div style={{display:"flex",justifyContent:"space-between"}}>
+                <div style={{display:"flex",justifyContent:"space-between",padding:10}}>
                     <div>
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
@@ -102,13 +102,13 @@ export function Appbar(){
             }else{
     return (
     <div style={{display:"flex",justifyContent:"space-between", backgroundColor:bcl,margin:0,padding:0}}>
-        <div>
-            <img style={{ width: 60, height: 45 }} src="https://wallpapercave.com/wp/wp7771193.jpg" alt="image here" />
+        <div style={{paddingLeft:10,}}>
+            <img style={{ width: 100, height: 70 }} src="https://1000logos.net/wp-content/uploads/2022/06/Coursera-Logo-2012-500x281.png" alt="image here"  />
         </div>
         <div>
-        <Typography style={{color:tcl,fontSize:"200%"}}>{companyname}</Typography>
+        <Typography style={{color:tcl,padding:10,fontSize:"200%"}}>{companyname}</Typography>
         </div>
-        <div style={{display:"flex",justifyContent:"space-between"}}>
+        <div style={{display:"flex",justifyContent:"space-between",padding:10,}}>
             <div>
             <Button style={{display:"flex",margin:10}} variant="contained" onClick={()=>{
                 navigate('/signup')
@@ -119,7 +119,7 @@ export function Appbar(){
                 navigate('/signin')
             }}>Sign In</Button>
             </div>
-            <div style={{display:"flex"}}> 
+            <div style={{display:"flex", padding:10}}> 
             <Switch
                 onChange={()=>{
                     setIsSpecial(!isSpecial)

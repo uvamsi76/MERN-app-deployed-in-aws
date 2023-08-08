@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import Mediacard from "./Mediacard"
 // import {isSpecialState} from "../store/isSpecial"
 // import {useRecoilValue} from "recoil"
@@ -18,19 +19,31 @@ import Mediacard from "./Mediacard"
 //     </div>
 //   );
 export function Home(){
+        const [courses,setCourses]=useState<any[]>();
+        const token= "Bearer "+localStorage.getItem("token");
+        useEffect(()=>{
+                fetch('http://localhost:3000/courses', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' , "Authorization":token},
+                }).then((res)=>{res.json().then((data)=>{
+                        setCourses(data.courses)
+                        console.log(data.courses)
+                })})
+        },[])
+        if(courses){
     return (
+        <div>
     <div style={{display:"flex",justifyContent:"center",flexWrap: "wrap",padding:"8%"}}>
-        <div style={{display:"flex",justifyContent:"center",margin:20}}><Mediacard imglink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=" title="suii"/>
-</div>
-        <div style={{display:"flex",justifyContent:"center",margin:20}}><Mediacard imglink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=" title="suii"/>
-</div>
-        <div style={{display:"flex",justifyContent:"center",margin:20}}><Mediacard imglink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=" title="suii"/>
-</div>
-        <div style={{display:"flex",justifyContent:"center",margin:20}}><Mediacard imglink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=" title="suii"/>
-</div>
-        <div style={{display:"flex",justifyContent:"center",margin:20}}><Mediacard imglink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=" title="suii"/>
-</div>
-        <div style={{display:"flex",justifyContent:"center",margin:20}}><Mediacard imglink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=" title="suii"/>
-</div>
-    </div>)
+        {courses.map((course)=>(
+            <div key ={course._id} style={{display:"flex",justifyContent:"center",margin:20}}>
+                <Mediacard  course={course}/>
+            </div>
+                ))}
+            
+            
+                
+        </div>
+        </div>
+)
+}
 }

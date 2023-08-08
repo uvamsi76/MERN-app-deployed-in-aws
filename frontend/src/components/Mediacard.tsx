@@ -4,24 +4,32 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 // import {useState} from "react"
 
 // MyComponentProps.ts
 type MyComponentProps = {
-  imglink: string;
-  title: string;
-  // Add other props with their respective types
-};
+  course:Course
+}
+type Course ={
+  title: string,
+    description: string,
+    price: Number,
+    imageLink: string,
+    published: Boolean,
+    Author: string,
+    _id:string
+}
 
 
-const Mediacard: React.FC<MyComponentProps> =({imglink,title})=>{
-  const a=imglink
-  const b=title
-  const ilink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=";
-  const tle="liz"
+const Mediacard: React.FC<MyComponentProps> =({course})=>{
+  const nav=useNavigate()
+  // const ilink="https://media.gettyimages.com/id/641180916/photo/lizard-in-a-human-hand.jpg?s=612x612&w=0&k=20&c=Thda7uz484WhqbByDODkcn11CMZhgCY46tvCGElEicU=";
+  const ilink=course.imageLink;
+  const tle=course.title
   // const desc="suii"
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card elevation={24} sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
         image={ilink}
@@ -32,13 +40,12 @@ const Mediacard: React.FC<MyComponentProps> =({imglink,title})=>{
           {tle}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {course.description}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={()=>nav(`/course/${course._id}`)}>Learn More</Button>
       </CardActions>
     </Card>
   );
