@@ -1,13 +1,16 @@
 import {Card,TextField,Button} from "@mui/material"
 import {useState} from "react"
-import {tokenState} from "../store/token"
+import {tokenState} from "../../store/token"
 import {useRecoilState} from "recoil"
-export function Signup(){
+import { ec2 } from "../../assets/var";
+import { useNavigate } from "react-router-dom";
+export function UserSignup(){
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
     const [tokenn,setTokenn]=useRecoilState(tokenState)
+    const nav=useNavigate()
     const handleSignup = async () => {
-        const response = await fetch('http://localhost:3000/admin/signup', {
+        const response = await fetch(ec2+'/users/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
@@ -31,7 +34,10 @@ export function Signup(){
                 <Card elevation={24} style={{display:"flex",flexDirection:"column",alignItems:"center",paddingTop:30 ,height:"200%",width:"20%",justifyContent:"center"}}>
                 <TextField style={{margin:20}} id="outlined-basic" label="username" variant="outlined" onChange={(e)=>{setUsername(e.target.value)}}/>
                 <TextField style={{margin:20}} id="outlined-basic" label="password" variant="outlined" onChange={(e)=>{setPassword(e.target.value)}}/>
-                <Button variant="contained" style={{margin:20}} onClick={handleSignup}> signup</Button>
+                <div>
+                    <Button variant="contained" style={{margin:20}} onClick={handleSignup}> signup</Button>
+                    <Button size="small"  onClick={()=>{nav('/signup_admin')}}> switch to admin signup </Button> 
+                </div>
                 </Card>
             </div>
         </div>

@@ -1,13 +1,16 @@
 import {Card,TextField,Button} from "@mui/material"
 import {useState} from "react"
-import {tokenState} from "../store/token"
+import {tokenState} from "../../store/token"
 import {useRecoilState} from "recoil"
-export function Signin(){
+import { ec2 } from "../../assets/var"
+import { useNavigate } from "react-router-dom"
+export function UserSignin(){
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
     const [tokenn,setTokenn]=useRecoilState(tokenState)
+    const nav=useNavigate()
     const handleSignin = async () => {
-        const response = await fetch('http://localhost:3000/admin/login', {
+        const response = await fetch(ec2+'/users/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
@@ -31,7 +34,11 @@ export function Signin(){
                 <Card elevation={24} style={{display:"flex",flexDirection:"column",alignItems:"center",paddingTop:30 ,height:"200%",width:"20%",justifyContent:"center"}}>
                 <TextField style={{margin:20}} id="outlined-basic" label="username" variant="outlined" onChange={(e)=>{setUsername(e.target.value)}}/>
                 <TextField style={{margin:20}} id="outlined-basic" label="password" variant="outlined" onChange={(e)=>{setPassword(e.target.value)}}/>
-                <Button variant="contained" style={{margin:20}} onClick={handleSignin}> signin</Button>
+                <div style={{display:"flex",justifyContent:"space-between"}}>
+                        <Button variant="contained" style={{margin:20}} onClick={handleSignin}>  signin</Button>
+                        <Button size="small"> forgot password ?</Button>
+                    </div>
+                    <Button size="small" style={{marginBottom:"5%"}} onClick={()=>{nav('/signin_admin')}}> switch to admin signin </Button>
                 </Card>
             </div>
         </div>

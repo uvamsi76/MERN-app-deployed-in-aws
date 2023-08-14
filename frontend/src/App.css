@@ -1,6 +1,6 @@
 .default-style {
   /* Default styles here */
-  background-color: whitesmoke;
+  background-color: #fff;
   margin: 0%;
   padding:0%;
   padding-bottom: 15%;
@@ -14,3 +14,5 @@
   padding-bottom: 15.26%;
   height: 100%;
 }
+
+/* e9f2ff */

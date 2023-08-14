@@ -5,21 +5,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
+import {Coursetype} from "../store/course"
 // import {useState} from "react"
 
 // MyComponentProps.ts
-type MyComponentProps = {
-  course:Course
+export type MyComponentProps = {
+  course:Coursetype
 }
-type Course ={
-  title: string,
-    description: string,
-    price: Number,
-    imageLink: string,
-    published: Boolean,
-    Author: string,
-    _id:string
-}
+// type Course ={
+//   title: string,
+//     description: string,
+//     price: Number,
+//     imageLink: string,
+//     published: Boolean,
+//     Author: string,
+//     _id:string
+// }
 
 
 const Mediacard: React.FC<MyComponentProps> =({course})=>{
@@ -29,7 +30,7 @@ const Mediacard: React.FC<MyComponentProps> =({course})=>{
   const tle=course.title
   // const desc="suii"
   return (
-    <Card elevation={24} sx={{ maxWidth: 345 }}>
+    <Card elevation={2} sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
         image={ilink}
