@@ -1,4 +1,3 @@
-import { type } from "os"
 import {RecoilState, atom ,selector} from "recoil"
 
 export type Coursetype ={
@@ -10,6 +9,21 @@ export type Coursetype ={
       Author: string,
       _id:string
   } 
+export const courseState=atom<Coursetype|null>({
+    key:"courseState",
+    default:null
+})
+
+export const publishedcourseState=atom<Coursetype|null>({
+  key:"publishedcourseState",
+  default:null
+})
+
+export const purchasedcourseState=atom<Coursetype|null>({
+  key:"publishedcourseState",
+  default:null
+})
+
   // type Course ={
 //   title: string,
 //     description: string,
@@ -19,10 +33,6 @@ export type Coursetype ={
 //     Author: string,
 //     _id:string
 // }
-export const courseState=atom<Coursetype|null>({
-    key:"courseState",
-    default:null
-})
 
 // const courseTitleState = selector<Str>({
 //     key: 'charCountState', // unique ID (with respect to other atoms/selectors)

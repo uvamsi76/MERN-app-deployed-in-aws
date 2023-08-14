@@ -1,2 +1,4 @@
 node_modules
-./demo-app-kpair.pem
+dist
+demo-app-kpair.pem
+.github
