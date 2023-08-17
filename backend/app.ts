@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import adminrouter  from "./routes/admin";
 import userrouter from "./routes/user"
+import commonrouter from "./routes/common";
 const PORT =3000;
 
 const app=express();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/admin",adminrouter)
 app.use("/users",userrouter)
+app.use(commonrouter)
 // Connect to MongoDB
 // DONT MISUSE THIS THANKYOU!!
 mongoose.connect('mongodb+srv://uvamsi76:ybjSWKpCunZoIvwY@cluster0.vtksuht.mongodb.net/nothing', { dbName: "nothing" });

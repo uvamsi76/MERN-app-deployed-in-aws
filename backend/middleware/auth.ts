@@ -9,9 +9,11 @@ export const authenticateJwt = (req:Request,res:Response,next:NextFunction) => {
       const token = authHeader.split(' ')[1];
       jwt.verify(token, SECRET, (err, payload) => {
         if (err) {
+            console.log(err)
           return res.sendStatus(403);
         }
         if (!payload) {
+            console.log(payload)
           return res.sendStatus(403);
         }
         if (typeof payload === "string") {
@@ -19,6 +21,7 @@ export const authenticateJwt = (req:Request,res:Response,next:NextFunction) => {
         }
         req.headers["user"] = payload.username;
         req.headers["userid"] = payload.id;
+        console.log(payload)
         next();
       });
     } else {

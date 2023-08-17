@@ -6,8 +6,11 @@ import {useRecoilState} from "recoil"
 import {useState,useEffect} from "react"
 export function Appbar(){
     const companyname="Coursera"
-    const settings:string[] = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
+    const isadmin=Boolean(localStorage.getItem("isadmin"))
+    var settings:string[] = ['Account', 'Dashboard', 'Logout'];
+    if(isadmin){
+        var settings:string[] = ['MyCourses', 'Account', 'Dashboard', 'Logout'];
+    }
     const [isSpecial,setIsSpecial]=useRecoilState(isSpecialState);
 
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -16,8 +19,8 @@ export function Appbar(){
     const [tcl,setTcl]=useState("#17171F")
     const navigate = useNavigate();
     function redirect(setting:string) {
-        if(setting=="Profile"){
-            navigate('/profile')
+        if(setting=="MyCourses"){
+            navigate('/mycourses')
         }
         else if(setting=="Account"){
             navigate("/account")
@@ -44,11 +47,9 @@ export function Appbar(){
           setTcl("#17171F")
           setBcl("#fff")
         }
-        const un=localStorage.getItem("username")
+        const un=localStorage.getItem("user")
       if(un){
       setUsername(un)
-      console.log("triggered")
-      console.log(isSpecial)
       }},[isSpecial])
     //   rgba(233, 242, 255,1)
     if(username){

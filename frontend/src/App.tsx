@@ -12,6 +12,9 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { Course } from './components/Course';
 import { Publishedcourses } from './components/admin/Publishedcourses';
 import { Updatecourses } from './components/admin/Updatecourses';
+import { Purchasedcourses } from './components/users/Purchasedcourses';
+import { Addcourse } from './components/admin/Addcourse';
+import { Deletecourse } from './components/admin/Deletecourse';
 function App() {
   // const [text, setText] = useRecoilState(textState);
 const [isSpecial]=useRecoilState(isSpecialState);
@@ -26,8 +29,11 @@ const [isSpecial]=useRecoilState(isSpecialState);
         <Route path="/signin_user" element={<UserSignin/>}/>
         <Route path="/signup_user" element={<UserSignup/>}/>
         <Route path="/course/:courseid" element={<Course/>}/>
-        <Route path="/dashboard" element={<Publishedcourses/>}/>
+        <Route path="/dashboard" element={<Purchasedcourses/>}/>
+        <Route path="/addcourse" element={<Addcourse/>}/>
         <Route path="/updatecourse" element={<Updatecourses/>}/>
+        <Route path="/deletecourse/:courseid" element={<Deletecourse/>}/>
+        <Route path="/mycourses" element={<Publishedcourses/>}/>
         <Route path="/logout" element={<Logout/>}/>
       </Routes>
     </Router>

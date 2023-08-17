@@ -11,7 +11,7 @@ userrouter.use(express.json());
 
 
 // User routes
-userrouter.post(' /signup', async (req, res) => {
+userrouter.post('/signup', async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     if (user) {
@@ -24,12 +24,12 @@ userrouter.post(' /signup', async (req, res) => {
     }
   });
   
-  userrouter.post(' /login', async (req, res) => {
+  userrouter.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username, password });
     if (user) {
       const token = jwt.sign({ username, role: 'user' }, SECRET, { expiresIn: '1h' });
-      res.json({ message: 'Logged in successfully', token });
+      res.json({ message: 'Logged in successfully', token ,username});
     } else {
       res.status(403).json({ message: 'Invalid username or password' });
     }
@@ -40,7 +40,7 @@ userrouter.post(' /signup', async (req, res) => {
     res.json({ courses });
   });
   
-  userrouter.post(' /courses/:courseId', authenticateJwt, async (req, res) => {
+  userrouter.post('/courses/:courseId', authenticateJwt, async (req, res) => {
     const course = await Course.findById(req.params.courseId);
     console.log(course);
     if (course) {
@@ -57,7 +57,7 @@ userrouter.post(' /signup', async (req, res) => {
     }
   });
   
-  userrouter.get(' /purchasedCourses', authenticateJwt, async (req, res) => {
+  userrouter.get('/purchasedCourses', authenticateJwt, async (req, res) => {
     const user = await User.findOne({ username: req.headers["user"] }).populate('purchasedCourses');
     if (user) {
       res.json({ purchasedCourses: user.purchasedCourses || [] });

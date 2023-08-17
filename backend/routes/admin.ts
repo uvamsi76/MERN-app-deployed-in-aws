@@ -32,8 +32,11 @@ adminrouter.post('/signup', (req, res) => {
       res.status(403).json({ message: 'Admin already exists' });
     } else {
       const obj = { username: username, password: password };
+      const obj2=   { username: username, password: password ,isAdmin:true};
       const newAdmin = new Admin(obj);
+      const newUser= new User(obj2);
       newAdmin.save();
+      newUser.save();
       const token = jwt.sign({ username, role: 'admin' }, SECRET, { expiresIn: '1h' });
       res.json({ message: 'Admin created successfully', token ,username});
     }
@@ -88,14 +91,33 @@ adminrouter.put('/courses/:courseId', authenticateJwt, async (req, res) => {
   }
 });
 
-adminrouter.get('/courses', authenticateJwt, async (req, res) => {
-  const courses = await Course.find({});
-  res.json({ courses });
-});
+adminrouter.get('/publishedCourses', authenticateJwt, async (req, res) => {
+    const admin = await Admin.findOne({ username: req.headers["user"] }).populate('publishedCourses');
+    if (admin) {
+      res.json({ purchasedCourses: admin.publishedCourses || [] });
+    } else {
+      res.status(403).json({ message: 'User not found' });
+    }
+  });
+adminrouter.delete('/delete/:courseId',authenticateJwt,async (req,res)=>{
+    const course = await Course.findByIdAndDelete(req.params.courseId);
+    const admin =await Admin.findOne({ username: req.headers["user"] })
+    if(admin?.publishedCourses)
+    admin?.publishedCourses.forEach((element,index)=>{
+        if(String(element) == req.params.courseId) admin?.publishedCourses.splice(index,1);
+     });
+     admin?.save()
+    if (course) {
+      res.json({ message: 'Course deleted successfully' });
+    } else {
+      res.status(404).json({ message: 'Course not found' });
+    }
+})
+
 
 // function callback(admin) {
 //   if (admin) {
-//     res.status(403).json({ message: 'Admin already exists' });
+//     res.status(403).jsimilarson({ message: 'Admin already exists' });
 //   } else {
 //     const obj = { username: username, password: password };
 //     const newAdmin = new Admin(obj);

@@ -18,8 +18,9 @@ export function UserSignin(){
         // Todo: Create a type for the response that you get back from the server
         const data = await response.json();
         if (data.token) {
+            localStorage.clear();
             localStorage.setItem("token", data.token)
-            localStorage.setItem("username", data.username)
+            localStorage.setItem("user", data.username)
             setTokenn(data.token)
             console.log(tokenn)
             window.location.href = "/";

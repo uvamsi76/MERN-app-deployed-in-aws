@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     username: {type: String},
     password: String,
-    purchasedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
+    purchasedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+    isAdmin:{type:Boolean,default:false}
   });
   
   const adminSchema = new mongoose.Schema({

@@ -1,4 +1,4 @@
-import {RecoilState, atom ,selector} from "recoil"
+import { atom } from "recoil"
 
 export type Coursetype ={
     title: string,
@@ -14,13 +14,18 @@ export const courseState=atom<Coursetype|null>({
     default:null
 })
 
-export const publishedcourseState=atom<Coursetype|null>({
+export const isAdminState=atom<Boolean>({
+  key:"isAdminState",
+  default:false
+})
+
+export const publishedcourseState=atom<any[]>({
   key:"publishedcourseState",
-  default:null
+  default:[]
 })
 
 export const purchasedcourseState=atom<Coursetype|null>({
-  key:"publishedcourseState",
+  key:"purchasedcourseState",
   default:null
 })
 

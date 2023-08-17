@@ -1,14 +1,10 @@
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import {courseState,Coursetype} from "../store/course"
-import ErrorBoundary from "../util/ErrorBoundary"
 import { ec2 } from "../assets/var";
-import Mediacard from "./Mediacard";
-import { red } from "@mui/material/colors";
-import { Certificate } from "crypto";
+import Mediacard from "./Coursecard";
 import StarIcon from '@mui/icons-material/Star';
 
 type MyComponentProps = {

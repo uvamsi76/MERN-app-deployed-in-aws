@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Mediacard from "./Mediacard"
+import Coursecard from "./Coursecard"
 import {ec2} from "../assets/var"
 import { Button, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -48,13 +48,13 @@ export function Home(){
                                 <div style={{display:"flex", marginTop:"5%",height:"30%"}}>
                                     <Button variant="contained" size="large" 
                                         style={{borderRadius:"0.5vw",width:"50%",margin:"2%",backgroundColor:"#0056d2",fontWeight:550}} onClick={()=>{
-                                            nav('/signin')
+                                            nav('/signup_user')
                                         }}>
                                             Join for free
                                     </Button>
                                     <Button variant="outlined" size="large"
                                         style={{borderRadius:"0.5vw",width:"50%",margin:"2%",borderWidth:"3px",borderStyle:"solid",fontWeight:550,borderColor:"#0056d2"}} onClick={()=>{
-                                            nav('/signup')
+                                            nav('/signup_admin')
                                         }}>
                                             Try coursera for buisiness
                                     </Button>
@@ -89,7 +89,7 @@ export function Home(){
                     <div style={{display:"flex",justifyContent:"center",flexWrap: "wrap",padding:"8%"}}>
                         {courses.map((course)=>(
                         <div key ={course._id} style={{display:"flex",justifyContent:"center",margin:20}}>
-                            <Mediacard  course={course}/>
+                            <Coursecard course={course} ispage={false} />
                         </div>
                         ))}
                     </div>

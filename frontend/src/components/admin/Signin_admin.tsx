@@ -4,10 +4,12 @@ import {tokenState} from "../../store/token"
 import {useRecoilState} from "recoil"
 import { ec2 } from "../../assets/var"
 import { useNavigate } from "react-router-dom"
+import { isAdminState } from "../../store/course"
 export function AdminSignin(){
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
     const [tokenn,setTokenn]=useRecoilState(tokenState)
+    const [isadmin,Setisadmin] =useRecoilState(isAdminState)
     const nav=useNavigate()
     const handleSignin = async () => {
         const response = await fetch(ec2+'/admin/login', {
@@ -18,10 +20,12 @@ export function AdminSignin(){
         // Todo: Create a type for the response that you get back from the server
         const data = await response.json();
         if (data.token) {
+            localStorage.clear();
+             setTokenn(data.token)
+             Setisadmin(true)
             localStorage.setItem("token", data.token)
-            localStorage.setItem("username", data.username)
-            setTokenn(data.token)
-            console.log(tokenn)
+            localStorage.setItem("isadmin","true")
+            localStorage.setItem("user", data.username)
             window.location.href = "/";
         } else {
             alert("Error while signing up");

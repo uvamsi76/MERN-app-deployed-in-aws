@@ -11,7 +11,7 @@ try{
     localStorage.clear();
     setTokenn("")
     console.log(tokenn)
-    nav('/')
+    window.location.href='/'
 }
 catch(err){
     console.log(err)
