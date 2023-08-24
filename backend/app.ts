@@ -14,9 +14,9 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use(express.json());
 
+app.use(commonrouter)
 app.use("/admin",adminrouter)
 app.use("/users",userrouter)
-app.use(commonrouter)
 // Connect to MongoDB
 // DONT MISUSE THIS THANKYOU!!
 mongoose.connect('mongodb+srv://uvamsi76:ybjSWKpCunZoIvwY@cluster0.vtksuht.mongodb.net/nothing', { dbName: "nothing" });
