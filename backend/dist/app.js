@@ -22,6 +22,6 @@ app.use(common_1.default);
 // DONT MISUSE THIS THANKYOU!!
 mongoose_1.default.connect('mongodb+srv://uvamsi76:ybjSWKpCunZoIvwY@cluster0.vtksuht.mongodb.net/nothing', { dbName: "nothing" });
 app.get('/', (req, res) => {
-    res.json("working fine mowa 9");
+    res.json("working fine mowa test");
 });
 app.listen(3000, () => console.log('Server running on port 3000 ok'));
