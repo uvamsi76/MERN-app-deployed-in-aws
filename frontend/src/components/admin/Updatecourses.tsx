@@ -1,6 +1,6 @@
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useRecoilState, useRecoilValue } from "recoil";
 import {courseState} from "../../store/course"
@@ -27,14 +27,14 @@ export function Updatecourses(){
         <div >
             <Toplayer title={course.title}/>
             <Grid container>
-            <Grid item lg={8} md={12} sm={12}>
+            <Grid item lg={4} md={12} sm={12}>
                     <div style={{display:"flex",justifyContent:"center",zIndex:2}}>
-                        <Mediacard course={course} ispage={false}/>
+                        
                     </div>
                 </Grid>
-                <Grid item lg={4} md={12} sm={12}>
-                    <div style={{display:"flex",justifyContent:"center",zIndex:2}}>
-                        <Coursecard course={course}/>
+                <Grid item lg={8} md={12} sm={12}>
+                    <div style={{display:"flex",justifyContent:"center"}}>
+                        <Updatecard/>
                     </div>
                 </Grid>
             </Grid>
@@ -47,6 +47,47 @@ export function Updatecourses(){
     /* <div style={{color:"red",paddingBottom:"0%",padding:"0%",margin:"10%",justifyContent:"center",boxShadow: '0px 0px 400px rgba(0, 0, 0, 0.5)'}}>
     <Typography variant="h4"  >course page </Typography>
     </div> */}
+
+function Updatecard(){
+    const course = useRecoilValue(courseState)
+    const [title,setTitle]=useState(course?.title)
+    const [description,setDescription]=useState(course?.description)
+    const [price,setPrice]=useState(course?.price)
+    const [imageLink,setImageLink]=useState(course?.imageLink)
+    async function handleupdate(){
+        const token='Bearer '+localStorage.getItem("token")
+        const user=localStorage.getItem("user")
+        if(course && token && user){
+        const response = await fetch(ec2+`/admin/courses/${course._id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' ,"Authorization":token,"user":user},
+            body: JSON.stringify({title,description,price,imageLink })
+        });
+        // Todo: Create a type for the response that you get back from the server
+        const data = await response.json();
+        console.log(data.message)
+        window.location.href=`/updatecourses/${course._id}`
+    }
+    else{
+        console.log("error")
+    }
+}
+    return (
+            <Card elevation={20} style={{display:"flex", width:"50%",justifyContent:"center",borderRadius:"0.5vw"}}>
+                <div style={{margin:"5%",display:"flex",flexDirection:"column",justifyContent:"center",width:"100%"}}>
+                    <Typography variant="h5">Update your course here</Typography>
+                    <TextField variant="outlined" label="title"       onChange={(e)=>{setTitle(e.target.value)}} style={{marginTop:"5%"}}/>
+                    <TextField variant="outlined" label="description" onChange={(e)=>{setDescription(e.target.value)}} style={{marginTop:"5%"}}/>
+                    <TextField variant="outlined" label="price"       onChange={(e)=>{setPrice(Number(e.target.value))}} style={{marginTop:"5%"}}/>
+                    <TextField variant="outlined" label="imageLink"   onChange={(e)=>{setImageLink(e.target.value)}} style={{marginTop:"5%"}}/>
+                    <div style={{marginTop:"5%"}}>
+                    <Button variant="contained" style={{padding:"1%",paddingLeft:"3%",paddingRight:"3%"}} onClick={async ()=>{await handleupdate()}}> Update </Button>
+                    </div>
+                    {/* title,description,price,imageLink,published,Author */}
+                </div>
+            </Card>
+    )
+}
 function Toplayer({title}){
     return(
         <>

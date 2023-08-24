@@ -37,7 +37,7 @@ export function AdminSignin(){
                 <h1 style={{padding:10 ,width:300}}>Admin Signin page</h1>
                 <Card elevation={24} style={{display:"flex",flexDirection:"column",alignItems:"center",paddingTop:30 ,height:"200%",width:"20%",justifyContent:"center"}}>
                     <TextField style={{margin:20}} id="outlined-basic" label="username" variant="outlined" onChange={(e)=>{setUsername(e.target.value)}}/>
-                    <TextField style={{margin:20}} id="outlined-basic" label="password" variant="outlined" onChange={(e)=>{setPassword(e.target.value)}}/>
+                    <TextField style={{margin:20}} id="outlined-basic" label="password" variant="outlined" type="password" onChange={(e)=>{setPassword(e.target.value)}}/>
                     <div style={{display:"flex",justifyContent:"space-between"}}>
                         <Button variant="contained" style={{margin:20}} onClick={handleSignin}>  signin</Button>
                         <Button size="small"> forgot password ?</Button>

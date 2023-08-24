@@ -31,7 +31,7 @@ const [isSpecial]=useRecoilState(isSpecialState);
         <Route path="/course/:courseid" element={<Course/>}/>
         <Route path="/dashboard" element={<Purchasedcourses/>}/>
         <Route path="/addcourse" element={<Addcourse/>}/>
-        <Route path="/updatecourse" element={<Updatecourses/>}/>
+        <Route path="/updatecourses/:courseid" element={<Updatecourses/>}/>
         <Route path="/deletecourse/:courseid" element={<Deletecourse/>}/>
         <Route path="/mycourses" element={<Publishedcourses/>}/>
         <Route path="/logout" element={<Logout/>}/>

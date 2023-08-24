@@ -33,7 +33,8 @@ export function AdminSignup(){
                 <h1 style={{padding:10 ,width:300}}> Admin Signup page</h1>
                 <Card elevation={24} style={{display:"flex",flexDirection:"column",alignItems:"center",paddingTop:30 ,height:"200%",width:"20%",justifyContent:"center"}}>
                 <TextField style={{margin:20}} id="outlined-basic" label="username" variant="outlined" onChange={(e)=>{setUsername(e.target.value)}}/>
-                <TextField style={{margin:20}} id="outlined-basic" label="password" variant="outlined" onChange={(e)=>{setPassword(e.target.value)}}/>
+                <TextField style={{margin:20}} id="outlined-basic" label="password" variant="outlined" 
+               type="password" onChange={(e)=>{setPassword(e.target.value)}}/>
                 <div>
                     <Button variant="contained" style={{margin:20}} onClick={handleSignup}> signup</Button>
                     <Button size="small"  onClick={()=>{nav('/signup_user')}}> switch to user signup </Button> 
