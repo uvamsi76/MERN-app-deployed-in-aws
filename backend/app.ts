@@ -22,7 +22,7 @@ app.use(commonrouter)
 mongoose.connect('mongodb+srv://uvamsi76:ybjSWKpCunZoIvwY@cluster0.vtksuht.mongodb.net/nothing', { dbName: "nothing" });
 
 app.get('/',(req,res)=>{
-  res.json("working fine mowa 9")
+  res.json("working fine mowa ")
 })
 
 app.listen(3000, () => console.log('Server running on port 3000 ok'));
