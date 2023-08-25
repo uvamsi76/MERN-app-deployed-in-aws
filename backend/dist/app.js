@@ -15,9 +15,9 @@ const app = (0, express_1.default)();
 app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+app.use(common_1.default);
 app.use("/admin", admin_1.default);
 app.use("/users", user_1.default);
-app.use(common_1.default);
 // Connect to MongoDB
 // DONT MISUSE THIS THANKYOU!!
 mongoose_1.default.connect('mongodb+srv://uvamsi76:ybjSWKpCunZoIvwY@cluster0.vtksuht.mongodb.net/nothing', { dbName: "nothing" });
