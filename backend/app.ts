@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import adminrouter  from "./routes/admin";
 import userrouter from "./routes/user"
 import commonrouter from "./routes/common";
-const PORT =3000;
+const PORT =80;
 
 const app=express();
 
@@ -25,4 +25,4 @@ app.get('/',(req,res)=>{
   res.json("working fine mowa test")
 })
 
-app.listen(3000, () => console.log('Server running on port 3000 ok'));
+app.listen(PORT, () => console.log('Server running on port 3000 ok'));
