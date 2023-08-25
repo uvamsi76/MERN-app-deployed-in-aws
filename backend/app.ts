@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import adminrouter  from "./routes/admin";
 import userrouter from "./routes/user"
 import commonrouter from "./routes/common";
-const PORT =80;
+const PORT =3000;
 
 const app=express();
 
