@@ -25,4 +25,4 @@ app.get('/',(req,res)=>{
   res.json("working fine mowa test")
 })
 
-app.listen(PORT, () => console.log('Server running on port 3000 ok'));
+app.listen(PORT, () => console.log(`Server running on port ${PORT} ok`));
