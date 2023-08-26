@@ -7,7 +7,7 @@ import adminrouter  from "./routes/admin";
 import userrouter from "./routes/user"
 import commonrouter from "./routes/common";
 import path from "path";
-const PORT =3000;
+const PORT =3002;
 
 const app=express();
 
