@@ -12,6 +12,7 @@ export function AdminSignin(){
     const [isadmin,Setisadmin] =useRecoilState(isAdminState)
     const nav=useNavigate()
     const handleSignin = async () => {
+        console.log(tokenn,isadmin)
         const response = await fetch(ec2+'/admin/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

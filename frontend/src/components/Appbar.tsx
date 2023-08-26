@@ -18,6 +18,7 @@ export function Appbar(){
     const [username,setUsername]=useState("")
     const [bcl,setBcl]=useState("#f5f5f5")
     const [tcl,setTcl]=useState("#17171F")
+    console.log(tcl)
     
     const navigate = useNavigate();
     

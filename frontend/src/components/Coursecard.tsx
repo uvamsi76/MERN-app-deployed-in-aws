@@ -6,8 +6,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import {Coursetype,isAdminState} from "../store/course"
-import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
 // import {useState} from "react"
 
 export type MyComponentProps = {
@@ -20,6 +18,7 @@ export const Coursecard =({course,ispage})=>{
   const nav=useNavigate();
 
   const isadmin = Boolean(localStorage.getItem("isadmin"))
+  console.log(isAdminState)
   
   const ilink=course.imageLink;
   const tle=course.title
@@ -69,4 +68,3 @@ function DeleteButton({id}){
   )
 }
 export default Coursecard;
-
