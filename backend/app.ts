@@ -6,7 +6,8 @@ import mongoose from "mongoose";
 import adminrouter  from "./routes/admin";
 import userrouter from "./routes/user"
 import commonrouter from "./routes/common";
-const PORT =3000;
+import path from "path";
+const PORT =8000;
 
 const app=express();
 
@@ -14,15 +15,20 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use(express.json());
 
+app.use(commonrouter)
 app.use("/admin",adminrouter)
 app.use("/users",userrouter)
-app.use(commonrouter)
 // Connect to MongoDB
 // DONT MISUSE THIS THANKYOU!!
 mongoose.connect('mongodb+srv://uvamsi76:ybjSWKpCunZoIvwY@cluster0.vtksuht.mongodb.net/nothing', { dbName: "nothing" });
 
-app.get('/',(req,res)=>{
-  res.json("working fine mowa ")
+// app.get('/',(req,res)=>{
+//   res.json("working fine mowa test")
+// })
+
+app.use(express.static("public"));
+app.use("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/index.html"))
 })
 
-app.listen(3000, () => console.log('Server running on port 3000 ok'));
+app.listen(PORT, () => console.log(`Server running on port ${PORT} mowa`));

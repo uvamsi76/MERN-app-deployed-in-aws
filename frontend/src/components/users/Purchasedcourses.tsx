@@ -1,5 +1,5 @@
-import { useRecoilState } from "recoil"
-import { publishedcourseState, purchasedcourseState } from "../../store/course"
+// import { useRecoilState } from "recoil"
+// import { publishedcourseState, purchasedcourseState } from "../../store/course"
 import { useEffect, useState } from "react"
 import { ec2 } from "../../assets/var"
 import Mediacard from "../Coursecard"
